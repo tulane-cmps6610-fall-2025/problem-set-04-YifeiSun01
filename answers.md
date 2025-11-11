@@ -13,12 +13,21 @@ Place all written answers from `problemset-04.md` here for easier grading.
 
 File | Fixed-Length Coding | Huffman Coding | Huffman vs. Fixed-Length
 ----------------------------------------------------------------------
-f1.txt    |                     |                |
-alice29.txt    |                     |                |
-asyoulik.txt    |                     |                |
-grammar.lsp    |                     |                |
-fields.c    |                     |                |
+alice29.txt   | 1,039,367 | 676,374 | 0.651
+asyoulik.txt  |   876,253 | 606,448 | 0.692
+f1.txt        |     1,340 |     826 | 0.616
+fields.c      |    78,050 |  56,206 | 0.720
+grammar.lsp   |    26,047 |  17,356 | 0.666
 
+File | Fixed-Length Coding | Huffman Coding | Huffman vs. Fixed-Length | Entropy H(X) (bits/char) | Huffman Avg Length (bits/char)
+-------------------------------------------------------------------------------------------------------------------------------
+alice29.txt   | 1,039,367 | 676,374 | 0.651 | 4.513 | 4.555
+asyoulik.txt  |   876,253 | 606,448 | 0.692 | 4.808 | 4.845
+f1.txt        |     1,340 |     826 | 0.616 | 3.035 | 3.082
+fields.c      |    78,050 |  56,206 | 0.720 | 5.008 | 5.041
+grammar.lsp   |    26,047 |  17,356 | 0.666 | 4.632 | 4.664
+
+Huffman coding is consistently more efficient than fixed-length coding, and the more skewed the character distribution (lower entropy), the greater the compression benefit.
 
 
 
