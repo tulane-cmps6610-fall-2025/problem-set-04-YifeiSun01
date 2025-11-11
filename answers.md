@@ -39,7 +39,7 @@ In the case of all letters in the document having the same frequency, the Huffma
 
 - **2a.**
 
-Let $H = \floor(\log_2 n)$. The total work satisfies
+Let $H = \lfloor \log_2 n \rfloor$. The total work satisfies
 $$T(n) \le \sum_{h=0}^{H} \frac{n}{2^{h+1}} c h = \frac{c n}{2} \sum_{h=0}^{H} \frac{h}{2^h}.$$
 
 We now compute the finite sum by telescoping.
