@@ -108,7 +108,21 @@ The only difference from the above work calculation is that for every level we a
 
 - **3a.**
 
+INPUT: integer N ≥ 0; denominations D = {2⁰, 2¹, …, 2ᵏ}  
+OUTPUT: multiset A of coins (values in D) summing to N, with as few coins as possible  
 
+procedure MakeChange(N):  
+ A ← ∅  
+ for j from k down to 0 do  
+  if 2ʲ ≤ N then  
+   a ← ⌊ N / 2ʲ ⌋  
+   include a coins of value 2ʲ into A  
+   N ← N − a · 2ʲ  
+  end if  
+ end for  
+ return A  
+
+ find the largest change of denomination that is smaller than N, use as much of that change as possible and then subtract N by the amount and repeat for the next step using the remaining value of N, use the next biggest change, as much as possible.
 
 - **3b.**
 
