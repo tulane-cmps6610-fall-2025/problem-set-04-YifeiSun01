@@ -39,8 +39,11 @@ In the case of all letters in the document having the same frequency, the Huffma
 
 - **2a.**
 
-At distance h from the leaves (i.e., nodes whose subtree height is h), the number of nodes is at most $n/2^{h+1}$. A sift-down starting at any such node can move down at most $h$ levels, so its cost is at most $c h$ for a constant $c$. Summing over all heights yields a total work bound.
+To build a binary min-heap in O(n) work, treat the input array as a nearly complete binary tree and restore the heap property from the bottom up.
+Starting from the last non-leaf node (at index ⌊n/2⌋−1), perform a sift-down operation on each node: compare it with its children, swap with the smaller child if necessary, and continue until the node is smaller than both children.
+Because lower nodes require fewer moves and higher nodes are fewer in number, the total work across all nodes sums to O(n).
 
+At distance h from the leaves (i.e., nodes whose subtree height is h), the number of nodes is at most $n/2^{h+1}$. A sift-down starting at any such node can move down at most $h$ levels, so its cost is at most $c h$ for a constant $c$. Summing over all heights yields a total work bound.
 
 Let $H = \lfloor \log_2 n \rfloor$. The total work satisfies
 $$T(n) \le \sum_{h=0}^{H} \frac{n}{2^{h+1}} c h = \frac{c n}{2} \sum_{h=0}^{H} \frac{h}{2^h}.$$
