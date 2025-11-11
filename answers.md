@@ -104,7 +104,7 @@ $$
 T_{span} = O((\log n)^2)
 $$
 
-
+The only difference from the above work calculation is that for every level we are only summing up over one node, not all nodes on that level. 
 
 - **3a.**
 
