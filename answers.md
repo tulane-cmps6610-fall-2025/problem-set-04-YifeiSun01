@@ -39,6 +39,36 @@ In the case of all letters in the document having the same frequency, the Huffma
 
 - **2a.**
 
+Let H = floor(log_2 n). The total work satisfies
+$$T(n) \le \sum_{h=0}^{H} \frac{n}{2^{h+1}} c h = \frac{c n}{2} \sum_{h=0}^{H} \frac{h}{2^h}.$$
+
+We now compute the finite sum by telescoping.
+
+Define the partial sums
+$$S_H = \sum_{h=0}^{H} \frac{h}{2^h}.$$
+
+Multiply by one half and shift the index
+$$\frac{S_H}{2} = \sum_{h=0}^{H} \frac{h}{2^{h+1}} = \sum_{k=1}^{H+1} \frac{k-1}{2^{k}}.$$
+
+Subtract
+$$S_H - \frac{S_H}{2} = \sum_{h=0}^{H} \frac{h}{2^h} - \sum_{k=1}^{H+1} \frac{k-1}{2^{k}}.$$
+
+Separate the boundary terms and combine like indices
+$$\frac{S_H}{2} = \sum_{k=1}^{H} \left(\frac{k}{2^{k}} - \frac{k-1}{2^{k}}\right) - \frac{H}{2^{H+1}} = \sum_{k=1}^{H} \frac{1}{2^{k}} - \frac{H}{2^{H+1}}.$$
+
+Evaluate the geometric sum
+$$\sum_{k=1}^{H} \frac{1}{2^{k}} = 1 - \frac{1}{2^{H}}.$$
+
+Therefore
+$$\frac{S_H}{2} = 1 - \frac{1}{2^{H}} - \frac{H}{2^{H+1}} = 1 - \frac{H+2}{2^{H+1}},$$
+so
+$$S_H = 2 - \frac{H+2}{2^{H}}.$$
+
+Plug back into the work bound
+$$T(n) \le \frac{c n}{2}\left(2 - \frac{H+2}{2^{H}}\right) = c n - \frac{c n}{2}\cdot \frac{H+2}{2^{H}} < c n.$$
+
+Since $H = \lfloor \log_2 n \rfloor$ and $2^{H} = \Theta(n)$, we conclude
+$$T(n) = \Theta(n).$$
 
 
 
