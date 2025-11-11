@@ -33,7 +33,7 @@ Huffman coding is consistently more efficient than fixed-length coding, and the 
 
 - **1d.**
 
-In the case of all letters in the document having the same frequency, the Huffman tree is almost a balanced binary tree, so all letters basically have the same fixed length of coding, which is $\log_2 \(\lvert \Sigma \rvert\)$ (the cardinality of the alphabet). The expected cost is $N \log_2 \(\lvert \Sigma \rvert\)$, in which $N$ is the number of all letters in the document.
+In the case of all letters in the document having the same frequency, the Huffman tree is almost a balanced binary tree, so all letters basically have the same fixed length of coding, which is $\log_2 \(\lvert \Sigma \rvert\)$ (the cardinality of the alphabet). The expected cost is $N \log_2 \(\lvert \Sigma \rvert\)$, in which $N$ is the number of all letters in the document. It is consistent across all documents as long as the number of letters is the same and all letters have the same frequency.
 
 
 
