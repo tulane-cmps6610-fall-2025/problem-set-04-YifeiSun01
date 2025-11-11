@@ -39,6 +39,9 @@ In the case of all letters in the document having the same frequency, the Huffma
 
 - **2a.**
 
+At distance h from the leaves (i.e., nodes whose subtree height is h), the number of nodes is at most $n/2^{h+1}$. A sift-down starting at any such node can move down at most $h$ levels, so its cost is at most $c h$ for a constant $c$. Summing over all heights yields a total work bound.
+
+
 Let $H = \lfloor \log_2 n \rfloor$. The total work satisfies
 $$T(n) \le \sum_{h=0}^{H} \frac{n}{2^{h+1}} c h = \frac{c n}{2} \sum_{h=0}^{H} \frac{h}{2^h}.$$
 
