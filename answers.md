@@ -81,6 +81,28 @@ $$T(n) = O(n).$$
 
 - **2b.**
 
+Let the binary heap have height $H = \lfloor \log_2 n \rfloor$.
+
+In level-synchronous construction, all nodes at the same depth $\ell$ perform SIFT-DOWN in parallel.
+A node at depth $\ell$ has height $H - \ell$, so its SIFT-DOWN takes $O(H - \ell)$ time.
+
+The total span is the sum of the times for all levels:
+
+$$
+T_{span} = \sum_{\ell=0}^{H-1} O(H - \ell)
+$$
+
+This is an arithmetic series:
+
+$$
+T_{span} = O(1 + 2 + \dots + H) = O(H^2)
+$$
+
+Since $H = O(\log n)$, we obtain
+
+$$
+T_{span} = O((\log n)^2)
+$$
 
 
 
