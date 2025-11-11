@@ -40,6 +40,7 @@ In the case of all letters in the document having the same frequency, the Huffma
 - **2a.**
 
 To build a binary min-heap in O(n) work, treat the input array as a nearly complete binary tree and restore the heap property from the bottom up.
+Treat the array A of length n as an almost-complete binary tree. For 1-based indexing, children of i are 2i and 2i+1 and non-leaf indices are i = ⌊n/2⌋, …, 1. For 0-based indexing, children of i are 2i+1 and 2i+2 and non-leaf indices are i = ⌊(n−2)/2⌋, …, 0.
 Starting from the last non-leaf node (at index ⌊n/2⌋−1), perform a sift-down operation on each node: compare it with its children, swap with the smaller child if necessary, and continue until the node is smaller than both children.
 Because lower nodes require fewer moves and higher nodes are fewer in number, the total work across all nodes sums to O(n).
 
