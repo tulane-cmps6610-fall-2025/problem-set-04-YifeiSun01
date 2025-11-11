@@ -68,7 +68,7 @@ Plug back into the work bound
 $$T(n) \le \frac{c n}{2}\left(2 - \frac{H+2}{2^{H}}\right) = c n - \frac{c n}{2}\cdot \frac{H+2}{2^{H}} < c n.$$
 
 Since $H = \lfloor \log_2 n \rfloor$ and $2^{H} = \Theta(n)$, we conclude
-$$T(n) = \Theta(n).$$
+$$T(n) = O(n).$$
 
 
 
