@@ -357,6 +357,7 @@ with p(i)=0 if the set is empty. Define OPT(0)=0. By optimal substructure,
 $$OPT(i)=\max\{ v_i + OPT(p(i)), OPT(i-1) \}.$$
 
 function WeightedTaskSelection(T: array of (s, f, v)) -> (best_value, S)
+
     # sort by finish time
     sort T by increasing f
     n ← length(T)
@@ -403,6 +404,7 @@ function WeightedTaskSelection(T: array of (s, f, v)) -> (best_value, S)
     reverse S
 
     return (OPT[n], S)
+    
 end function
 
 Correctness. The recurrence follows from optimal substructure: including task i yields value v_i + OPT(p(i)); excluding i yields OPT(i-1). Taking the maximum preserves optimality.
