@@ -247,6 +247,46 @@ Combining both directions proves the recurrence and thus the optimal substructur
 
 - **4c.**
 
+State:
+Let OPT[n] be the minimum number of coins to form value n, or +∞ if impossible. Let CHOICE[n] store the denomination that attains the minimum when finite.
+
+Recurrence:
+$$\mathrm{OPT}[0]=0,\quad \mathrm{OPT}[n]=\min_{d\in D,\ d\le n}\{\,1+\mathrm{OPT}[n-d]\,\}\ \text{for}\ n\ge 1.$$
+
+Initialization:
+Set OPT[0]=0 and OPT[n]=+∞ for 1≤n≤N. Set CHOICE[*]=undefined.
+
+Algorithm:
+for n from 1 to N do
+    best ← +∞
+    pick ← undefined
+    in parallel over all d in D with d ≤ n do
+        cand ← 1 + OPT[n − d]
+        if cand < best then
+            best ← cand
+            pick ← d
+        end if
+    end parallel
+    OPT[n] ← best
+    CHOICE[n] ← pick
+end for
+
+If OPT[N]=+∞ report “impossible.” Otherwise reconstruct by:
+n ← N
+Ans ← empty multiset
+while n > 0 do
+    d ← CHOICE[n]
+    include coin d into Ans
+    n ← n − d
+end while
+Return Ans.
+
+**Work, span, space.**
+Let k=|D|.
+Work: Each n examines up to k denominations. Total work is $$\Theta(kN).$$
+Span without parallelism over D: each n depends on smaller indices, so the chain has length N and each step is O(1). Span is $$\Theta(N).$$
+Span with parallel min over D: the k candidates at each n can be reduced in $$\Theta(\log k)$$ span. States n must still be processed in increasing order, so total span is $$\Theta(N\log k).$$
+Space: arrays OPT and CHOICE of length N+1, so $$\Theta(N).$$
 
 - **5a.**
 
