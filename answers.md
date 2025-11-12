@@ -249,21 +249,16 @@ Combining both directions proves the recurrence and thus the optimal substructur
 
 pseudo code of a bottom up method
 
-// coins[0..k-1] is the array of k coin denominations
-// N is the target amount
-// memo[0..N] is an array initialized to “UNCOMPUTED” (or a sentinel) for all x = 0..N
-
-
 function MinCoins(x):
     if x = 0 then
         return 0
     if x < 0 then
-        return +∞    // indicates “not possible”
+        return +∞          // not possible to make negative amount
     if memo[x] ≠ “UNCOMPUTED” then
         return memo[x]
 
     best = +∞
-    for i = 0 to k-1 do
+    for i = 0 to k−1 do
         d = coins[i]
         if x − d ≥ 0 then
             sub = MinCoins(x − d)
