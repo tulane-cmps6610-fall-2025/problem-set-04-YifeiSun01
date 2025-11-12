@@ -273,7 +273,7 @@ function MinCoins(x):
     return best
 end function
 
-
+store all results for the imtermediate steps and subproblems, the number of coins and what coins in the results, retrieve the result whenever you encounter the state from the stored results
 
 - **5a.**
 
