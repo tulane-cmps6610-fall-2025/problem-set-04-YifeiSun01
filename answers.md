@@ -275,8 +275,6 @@ end function
 
 store all results for the imtermediate steps and subproblems, the number of coins and what coins in the results, retrieve the result whenever you encounter the state from the stored results
 
-- **5a.**
-
 Let N be the target and k the number of coin types.
 
 Work:
@@ -287,6 +285,32 @@ Span:
 The dependency DAG goes from x to x−d. The longest dependency chain has length equal to the minimum number of coins needed for N, which is ≤ N when a 1-coin exists.
 If the inner min over k coin choices is done sequentially, span = Θ(N).
 If the inner min over k is reduced in parallel, span = Θ(N log k).
+
+- **5a.**
+
+
+
+The greedy choice property does not hold in general. Below are two counterexamples showing that natural greedy rules can fail.
+
+Counterexample 1: “earliest finishing time” fails.
+
+Tasks (si, fi, vi):
+a1: (0, 3, 4)
+a2: (3, 5, 3)
+a3: (0, 5, 8)
+
+Greedy by earliest finish picks a1 then a2 with total value 7. The optimal is to pick a3 with value 8.
+
+Counterexample 2: “maximum value density” or “maximum raw value” fails.
+
+Tasks (si, fi, vi):
+b1: (0, 2, 4)   length 2, density 2
+b2: (2, 4, 4)   length 2, density 2
+b3: (0, 4, 7)   length 4, density 1.75
+
+Greedy by density or by raw value may take b3 first (highest value 7), leaving no room for b1 or b2, achieving value 7. The optimal is b1 and b2 with total value 8.
+
+Conclusion. No single local greedy rule like earliest finish, latest start, highest value, highest value per unit time is guaranteed to be optimal for weighted tasks.
 
 - **5b.**
 
