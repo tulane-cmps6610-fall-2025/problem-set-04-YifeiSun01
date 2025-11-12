@@ -250,6 +250,7 @@ Combining both directions proves the recurrence and thus the optimal substructur
 pseudo code of a bottom up method
 
 function MinCoins(x):
+
     if x = 0 then
         return 0
     if x < 0 then
