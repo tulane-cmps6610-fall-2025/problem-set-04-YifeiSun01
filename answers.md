@@ -204,7 +204,10 @@ and let the target amount be
 $$N = 70.$$
 
 greedy algorithm would take 1 40 and 30 1.
+
 the best way is 2 35.
+
+In this setting of a completely random set of coins' denomination, we can not even make the value N. For example if all coins' denominations are even and the value is odd.
 
 - **4b.**
 
