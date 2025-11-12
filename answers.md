@@ -208,7 +208,38 @@ the best way is 2 35.
 
 - **4b.**
 
+**Claim (Optimal substructure).**
+Let D be the set of denominations. Define OPT(n) as the minimum number of coins needed to form value n,
+and take OPT(n)=+∞ if n cannot be formed. Then for n≥1:
 
+$$\mathrm{OPT}(n)=\min_{d\in D,\ d\le n}\ \{\,1+\mathrm{OPT}(n-d)\,\},\quad \mathrm{OPT}(0)=0.$$
+
+Equivalently, any optimal solution for n can be obtained by choosing one coin d∈D with d≤n and then
+extending an optimal solution for n−d by that coin.
+
+**Proof.**
+Fix n≥1. If n is infeasible, then for every d≤n either n−d is infeasible or adding d overshoots, so the
+right-hand side is +∞, matching OPT(n)=+∞.
+
+Otherwise let S be an optimal multiset of coins summing to n with |S|=OPT(n). Take any coin d∈S and
+let S′=S\{d}. Then S′ sums to n−d, so OPT(n−d)≤|S′|=OPT(n)−1, hence
+
+$$\mathrm{OPT}(n)\ge 1+\mathrm{OPT}(n-d).$$
+
+Since this holds for the particular d∈S, it holds for the minimum over all d≤n, giving
+
+$$\mathrm{OPT}(n)\ge \min_{d\le n}(1+\mathrm{OPT}(n-d)).$$
+
+For the reverse inequality, pick any d∈D with d≤n and any optimal multiset T for n−d, with |T|=OPT(n−d).
+Then T∪{d} forms n using 1+OPT(n−d) coins, so
+
+$$\mathrm{OPT}(n)\le 1+\mathrm{OPT}(n-d).$$
+
+Taking the minimum over d≤n yields
+
+$$\mathrm{OPT}(n)\le \min_{d\le n}(1+\mathrm{OPT}(n-d)).$$
+
+Combining both directions proves the recurrence and thus the optimal substructure.
 
 
 - **4c.**
