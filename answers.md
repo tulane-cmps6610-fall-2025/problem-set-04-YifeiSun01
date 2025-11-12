@@ -350,3 +350,54 @@ Conclusion. No single local greedy rule like earliest finish, latest start, high
 
 
 - **5c.**
+
+Setup. Given tasks with triples (s_i, f_i, v_i). Sort by nondecreasing finish time f_1 ≤ f_2 ≤ … ≤ f_n. For each i define
+$$p(i)=\max\{ j<i : f_j \le s_i \}$$
+with p(i)=0 if the set is empty. Define OPT(0)=0. By optimal substructure,
+$$OPT(i)=\max\{ v_i + OPT(p(i)), OPT(i-1) \}.$$
+
+Bottom-up algorithm.
+1) Sort tasks by finish time.
+2) Precompute p(i) for all i using binary search over the array of finishes.
+3) Fill OPT[0..n].
+4) Optionally reconstruct the chosen set by backtracking decisions.
+
+Pseudocode.
+Input: array of tasks T[1..n] with fields s, f, v
+1. StableSort T by increasing f
+2. For i in 1..n:
+       p[i] ← binary_search_last_j_with f[j] ≤ s[i] among j in 1..i-1
+3. OPT[0] ← 0
+4. For i in 1..n:
+       take ← v[i] + OPT[p[i]]
+       skip ← OPT[i-1]
+       if take ≥ skip then
+           OPT[i] ← take ; D[i] ← 1
+       else
+           OPT[i] ← skip ; D[i] ← 0
+5. Reconstruct:
+       S ← empty list
+       i ← n
+       while i > 0:
+           if D[i] = 1 then
+               append i to S
+               i ← p[i]
+           else
+               i ← i - 1
+       reverse S
+Output: value OPT[n] and set S
+
+Correctness. The recurrence follows from optimal substructure: including task i yields value v_i + OPT(p(i)); excluding i yields OPT(i-1). Taking the maximum preserves optimality.
+
+Work.
+• Sorting: O(n log n).
+• Precomputing all p(i) by binary search: O(n log n).
+• DP fill and reconstruction: O(n).
+Total work: O(n log n).
+
+Span.
+• Parallel sort with O(n log n) work has O(log n) span.
+• All p(i) can be computed in parallel, each binary search takes O(log n) span, so O(log n) span overall for this stage.
+• The DP array has the dependency OPT(i) on OPT(i-1), which is a chain, so DP span is O(n).
+Total span dominated by the DP chain: O(n).
+
