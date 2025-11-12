@@ -149,39 +149,32 @@ Hence the problem exhibits the optimal-substructure property.
 
 - **3c.**
 
-**Work and Span Analysis**
+**Work and Span Analysis**  
 
-Let the denominations be \(2^0, 2^1, \dots, 2^k\), and suppose we want to make change for amount \(N\).  
-We assume \(2^k \le N < 2^{k+1}\), so there are \(k+1 = O(\log N)\) denominations.
+Let the denominations be 1, 2, 4, …, 2^k, and suppose we wish to make change for amount N.  
+We have 2^k ≤ N < 2^{k+1}, so k + 1 = O(log N) denominations.
 
 **Work:**  
-At each step for denomination \(2^i\) we compute  
-\[
-a_i = \left\lfloor \frac{N_{\rm rem}}{2^i} \right\rfloor
-\]
+At each step for denomination 2^i we compute the integer quotient  
+$$a_i = \left\lfloor \frac{N_{\rm rem}}{2^i} \right\rfloor$$  
 and then update  
-\[
-N_{\rm rem} \leftarrow N_{\rm rem} - a_i \cdot 2^i.
-\]
-There are \(k+1\) steps and each step does constant arithmetic, so  
-\[
-W = O(k) = O(\log N).
-\]
+$$N_{\rm rem} \leftarrow N_{\rm rem} - a_i \cdot 2^i.$$  
+There are k + 1 steps and each step takes O(1) arithmetic operations, so  
+$$W = O(k) = O(\log N).$$
 
 **Span:**  
-In the straightforward execution the steps are strictly sequential (each update depends on the previous remainder). Thus the longest dependency path has length  
-\[
-S = O(k) = O(\log N).
-\]
-Because span and work are of the same order, the parallelism ratio  
-\[
-\frac{W}{S} = O(1)
-\]
-is constant. Hence this greedy algorithm is essentially sequential.
+In the straightforward sequential implementation, each update depends on the value of \(N_{\rm rem}\) from the previous step. Thus the longest chain of dependencies (the critical path) has length  
+$$S = O(k) = O(\log N).$$  
+Because span and work are of the same asymptotic order, the parallelism ratio satisfies  
+$$\frac{W}{S} = O(1)$$  
+so the algorithm is essentially sequential and cannot exploit significant parallelism.
 
 **Conclusion:**  
-Work \(W = O(\log N)\) and span \(S = O(\log N)\).  
-Therefore, the algorithm cannot significantly exploit parallelism beyond constant factor speed-up.
+Work \(W = O(\log N)\) and Span \(S = O(\log N)\).  
+Hence this greedy change-making algorithm has limited potential for parallel speed-up.
+
+
+
 
 - **4a.**
 
