@@ -290,13 +290,20 @@ If the inner min over k is reduced in parallel, span = Θ(N log k).
 
 
 
+
+
+- **5b.**
+
 The greedy choice property does not hold in general. Below are two counterexamples showing that natural greedy rules can fail.
 
 Counterexample 1: “earliest finishing time” fails.
 
 Tasks (si, fi, vi):
+
 a1: (0, 3, 4)
+
 a2: (3, 5, 3)
+
 a3: (0, 5, 8)
 
 Greedy by earliest finish picks a1 then a2 with total value 7. The optimal is to pick a3 with value 8.
@@ -304,17 +311,16 @@ Greedy by earliest finish picks a1 then a2 with total value 7. The optimal is to
 Counterexample 2: “maximum value density” or “maximum raw value” fails.
 
 Tasks (si, fi, vi):
+
 b1: (0, 2, 4)   length 2, density 2
+
 b2: (2, 4, 4)   length 2, density 2
+
 b3: (0, 4, 7)   length 4, density 1.75
 
 Greedy by density or by raw value may take b3 first (highest value 7), leaving no room for b1 or b2, achieving value 7. The optimal is b1 and b2 with total value 8.
 
 Conclusion. No single local greedy rule like earliest finish, latest start, highest value, highest value per unit time is guaranteed to be optimal for weighted tasks.
-
-- **5b.**
-
-
 
 
 - **5c.**
