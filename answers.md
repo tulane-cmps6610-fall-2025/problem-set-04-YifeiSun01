@@ -289,16 +289,16 @@ If the inner min over k is reduced in parallel, span = Θ(N log k).
 - **5a.**
 
 Setup. Sort tasks by nondecreasing finish time f1 ≤ f2 ≤ … ≤ fn. For each i define
-$$p(i)=\max\{ j \mid j<i \text{ and } f_j \le s_i \}$$
-and set p(i)=0 if no such j exists. Let OPT(i) be the maximum total value using only tasks {1,…,i}, with OPT(0)=0.
+$$p(i)=\max\{ j< i : f_j \le s_i \}$$
+with p(i)=0 if the set is empty. Let OPT(0)=0 and for i≥1 let OPT(i) be the maximum total value achievable using only tasks 1,…,i.
 
-Claim. For every i,
-$$OPT(i)=\max\{\, v_i + OPT(p(i)),\; OPT(i-1) \,\}.$$
+Claim. For every i≥1,
+$$OPT(i)=\max\{ v_i + OPT(p(i)),\; OPT(i-1) \}.$$
 
-Proof. Consider an optimal solution S* for tasks {1,…,i}.
-Case 1: i ∉ S*. Then S* uses only tasks {1,…,i-1} and has value OPT(i-1).
-Case 2: i ∈ S*. Then every other task in S* finishes by s_i, so they belong to {1,…,p(i)}. If those tasks did not achieve OPT(p(i)), replacing them with an optimal solution on {1,…,p(i)} would increase total value, contradicting optimality of S*. Hence the value in this case is v_i + OPT(p(i)).
-Taking the better of the two cases yields the recurrence, establishing optimal substructure.
+Proof. Consider an optimal solution S* on tasks 1,…,i.
+Case 1: i ∉ S*. Then S* uses only tasks 1,…,i−1, so its value is OPT(i−1).
+Case 2: i ∈ S*. All other tasks in S* must finish no later than s_i, hence they lie in 1,…,p(i). If those chosen tasks did not have value OPT(p(i)), replacing them by an optimal solution on 1,…,p(i) would strictly increase total value, contradicting optimality of S*. Thus the value in this case is v_i + OPT(p(i)).
+Taking the maximum of the two cases yields the recurrence, which proves optimal substructure.
 
 
 
