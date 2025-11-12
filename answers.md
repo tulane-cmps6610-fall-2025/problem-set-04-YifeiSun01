@@ -391,13 +391,19 @@ Correctness. The recurrence follows from optimal substructure: including task i 
 
 Work.
 • Sorting: O(n log n).
+
 • Precomputing all p(i) by binary search: O(n log n).
+
 • DP fill and reconstruction: O(n).
+
 Total work: O(n log n).
 
 Span.
 • Parallel sort with O(n log n) work has O(log n) span.
+
 • All p(i) can be computed in parallel, each binary search takes O(log n) span, so O(log n) span overall for this stage.
+
 • The DP array has the dependency OPT(i) on OPT(i-1), which is a chain, so DP span is O(n).
+
 Total span dominated by the DP chain: O(n).
 
