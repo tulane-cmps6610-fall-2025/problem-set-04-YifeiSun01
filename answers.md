@@ -356,6 +356,10 @@ $$p(i)=\max\{ j<i : f_j \le s_i \}$$
 with p(i)=0 if the set is empty. Define OPT(0)=0. By optimal substructure,
 $$OPT(i)=\max\{ v_i + OPT(p(i)), OPT(i-1) \}.$$
 
+The first term means take task i (then we can only add tasks up to p(i)).
+
+The second term means skip task i (then we keep the best value up to i-1).
+
 function WeightedTaskSelection(T: array of (s, f, v)) -> (best_value, S)
 
     # sort by finish time
