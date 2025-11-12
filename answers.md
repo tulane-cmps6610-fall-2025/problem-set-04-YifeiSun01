@@ -163,7 +163,7 @@ There are k + 1 steps and each step takes O(1) arithmetic operations, so
 $$W = O(k) = O(\log N).$$
 
 **Span:**  
-In the straightforward sequential implementation, each update depends on the value of \(N_{\rm rem}\) from the previous step. Thus the longest chain of dependencies (the critical path) has length  
+In the straightforward sequential implementation, each update depends on the value of $\(N_{\rm rem}\)$ from the previous step. Thus the longest chain of dependencies (the critical path) has length  
 $$S = O(k) = O(\log N).$$  
 Because span and work are of the same asymptotic order, the parallelism ratio satisfies  
 $$\frac{W}{S} = O(1)$$  
