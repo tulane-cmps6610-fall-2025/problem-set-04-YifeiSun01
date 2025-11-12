@@ -126,7 +126,25 @@ procedure MakeChange(N):
 
 - **3b.**
 
+**Proof of optimality**
 
+*Greedy Algorithm:* Given N, pick the largest coin value 2^k that does not exceed the remaining amount; use as many coins of denomination 2^k as possible (i.e. a = ⌊N / 2^k⌋), subtract a·2^k from N, and repeat on the remainder with the next smaller denomination until the amount is zero.
+
+**1. Greedy-choice property**  
+Let the denominations be 1, 2, 4, …, 2^k.  
+Claim: There exists an optimal solution that uses exactly a = ⌊N / 2^k⌋ coins of value 2^k in its first step.  
+*Proof:* Suppose an optimal solution Opt uses b < a coins of value 2^k, and uses coins of value ≤ 2^{k−1} to make up the remainder. Then the remaining amount is  
+$$N - b \cdot 2^k \ge N - (a - 1)\cdot2^k \ge 2^k.$$  
+Since coins of value at most 2^{k−1} cannot sum to 2^k using fewer than two coins, replacing those smaller denom­ination coins by one additional 2^k coin yields a solution with strictly fewer coins—a contradiction to Opt being optimal. Therefore Opt must use a coins of value 2^k in the first step.
+
+**2. Optimal substructure**  
+After using a coins of value 2^k, the remainder is  
+$$N' = N - a \cdot 2^k,$$  
+and the remaining problem is: make change for N′ using denominations 1, 2, 4, …, 2^{k−1}.  
+Let Opt′ be the coins used by Opt for this remainder. If Opt′ is not optimal for the sub-problem of making change for N′, then there is a better solution S′ using fewer coins. Replacing Opt′ by S′ (and keeping the a coins of value 2^k) gives a full solution for N with fewer coins than Opt—contradiction. Thus Opt′ must itself be optimal for the sub-problem.  
+Hence the problem exhibits the optimal-substructure property.
+
+**Conclusion:** Since both the greedy‐choice property and the optimal‐substructure property hold, the greedy algorithm always produces an optimal (minimum-coin) solution for making change when coin denominations are powers of 2.
 
 
 - **3c.**
