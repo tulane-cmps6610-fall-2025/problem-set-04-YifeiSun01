@@ -178,7 +178,23 @@ Hence this greedy change-making algorithm has limited potential for parallel spe
 
 - **4a.**
 
+Let the denomination set be  
+$$D = \{1, 3, 4\}$$  
+and let the target amount be  
+$$N = 6.$$
 
+**Greedy algorithm execution:**  
+1. Choose the largest coin value ≤ 6, which is 4. Then remaining = 6 − 4 = 2.  
+2. Choose the largest coin value ≤ 2, which is 1. Then remaining = 2 − 1 = 1.  
+3. Choose the largest coin value ≤ 1, which is 1. Then remaining = 1 − 1 = 0.  
+Total coins used by greedy = 3.
+
+**Optimal solution:**  
+Use two coins of value 3 each: 3 + 3 = 6.  
+Total coins used = 2.
+
+Since 3 (greedy) > 2 (optimal), the greedy algorithm does **not** yield the fewest coins in this case.  
+Thus the greedy algorithm fails for this denomination set.
 
 - **4b.**
 
