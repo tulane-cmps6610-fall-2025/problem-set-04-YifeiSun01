@@ -151,8 +151,8 @@ Hence the problem exhibits the optimal-substructure property.
 
 **Work and Span Analysis**  
 
-Let the denominations be 1, 2, 4, …, 2^k, and suppose we wish to make change for amount N.  
-We have 2^k ≤ N < 2^{k+1}, so k + 1 = O(log N) denominations.
+Let the denominations be $1, 2, 4, …, 2^k$, and suppose we wish to make change for amount $N$.  
+We have $2^k ≤ N < 2^{k+1}$, so $k + 1 = O(log N)$ denominations.
 
 **Work:**  
 At each step for denomination 2^i we compute the integer quotient  
@@ -170,7 +170,7 @@ $$\frac{W}{S} = O(1)$$
 so the algorithm is essentially sequential and cannot exploit significant parallelism.
 
 **Conclusion:**  
-Work \(W = O(\log N)\) and Span \(S = O(\log N)\).  
+Work = $\(W = O(\log N)\)$ and Span = $\(S = O(\log N)\)$.  
 Hence this greedy change-making algorithm has limited potential for parallel speed-up.
 
 
