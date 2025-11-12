@@ -196,6 +196,16 @@ Total coins used = 2.
 Since 3 (greedy) > 2 (optimal), the greedy algorithm does **not** yield the fewest coins in this case.  
 Thus the greedy algorithm fails for this denomination set.
 
+Another example:
+
+Let the denomination set be  
+$$D = \{1, 35, 40\}$$  
+and let the target amount be  
+$$N = 70.$$
+
+greedy algorithm would take 1 40 and 30 1.
+the best way is 2 35.
+
 - **4b.**
 
 
