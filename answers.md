@@ -308,17 +308,31 @@ a3: (0, 5, 8)
 
 Greedy by earliest finish picks a1 then a2 with total value 7. The optimal is to pick a3 with value 8.
 
-Counterexample 2: “maximum value density” or “maximum raw value” fails.
+Counterexample 2: “maximum raw value” fails.
 
 Tasks (si, fi, vi):
 
-b1: (0, 2, 4)   length 2, density 2
+b1: (0, 2, 4)
 
-b2: (2, 4, 4)   length 2, density 2
+b2: (2, 4, 4)
 
-b3: (0, 4, 7)   length 4, density 1.75
+b3: (0, 4, 7)
 
-Greedy by density or by raw value may take b3 first (highest value 7), leaving no room for b1 or b2, achieving value 7. The optimal is b1 and b2 with total value 8.
+Greedy by maximum value picks b3 first (value 7), leaving no room for b1 or b2, achieving total value 7.
+The optimal is to pick b1 and b2, achieving total value 8.
+
+Counterexample 3: “maximum value density” fails.
+
+Tasks (si, fi, vi):
+
+c1: (0, 4, 7)    length 4, density 1.75
+
+c2: (4, 10, 7)   length 6, density ≈1.1667
+
+c3: (0, 10, 15)  length 10, density 1.5
+
+Greedy by highest value/length ratio picks c1 first, then c2, for total value 14.
+The optimal is to pick only c3 with total value 15.
 
 Conclusion. No single local greedy rule like earliest finish, latest start, highest value, highest value per unit time is guaranteed to be optimal for weighted tasks.
 
