@@ -296,10 +296,10 @@ $$p(i)=\max\{ j<i : f_j \le s_i \}$$
 and let OPT(i) be the maximum total value obtainable from the first i tasks, with OPT(0)=0.
 
 For each i≥1, the optimal value satisfies  
-$$OPT(i)=\max\{ v_i + OPT(p(i)), OPT(i-1) \}.$$
+$$OPT(i)=\max\{ v_i + OPT(p(i)), OPT(i-1) \}$$
 
-If task i is not included in the optimal set, the best value is OPT(i−1).  
-If task i is included, all compatible tasks must finish before s_i, giving total value v_i + OPT(p(i)).  
+If task $i$ is not included in the optimal set, the best value is $OPT(i−1)$.  
+If task $i$ is included, all compatible tasks must finish before $s_i$, giving total value $v_i + OPT(p(i))$.  
 Choosing the larger of the two gives the recurrence.  
 Therefore the problem has the optimal substructure property.
 
