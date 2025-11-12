@@ -356,36 +356,54 @@ $$p(i)=\max\{ j<i : f_j \le s_i \}$$
 with p(i)=0 if the set is empty. Define OPT(0)=0. By optimal substructure,
 $$OPT(i)=\max\{ v_i + OPT(p(i)), OPT(i-1) \}.$$
 
-Bottom-up algorithm.
-1) Sort tasks by finish time.
-2) Precompute p(i) for all i using binary search over the array of finishes.
-3) Fill OPT[0..n].
-4) Optionally reconstruct the chosen set by backtracking decisions.
+function WeightedTaskSelection(T: array of (s, f, v)) -> (best_value, S)
+    # sort by finish time
+    sort T by increasing f
+    n ← length(T)
 
-Pseudocode.
-Input: array of tasks T[1..n] with fields s, f, v
-1. StableSort T by increasing f
-2. For i in 1..n:
-       p[i] ← binary_search_last_j_with f[j] ≤ s[i] among j in 1..i-1
-3. OPT[0] ← 0
-4. For i in 1..n:
-       take ← v[i] + OPT[p[i]]
-       skip ← OPT[i-1]
-       if take ≥ skip then
-           OPT[i] ← take ; D[i] ← 1
-       else
-           OPT[i] ← skip ; D[i] ← 0
-5. Reconstruct:
-       S ← empty list
-       i ← n
-       while i > 0:
-           if D[i] = 1 then
-               append i to S
-               i ← p[i]
-           else
-               i ← i - 1
-       reverse S
-Output: value OPT[n] and set S
+    # precompute p[i]
+    p ← array[1..n]
+    for i from 1 to n do
+        p[i] ← 0
+        for j from i-1 down to 1 do
+            if T[j].f ≤ T[i].s then
+                p[i] ← j
+                break
+            end if
+        end for
+    end for
+
+    # DP
+    OPT ← array[0..n]
+    D ← array[1..n]
+    OPT[0] ← 0
+    for i from 1 to n do
+        take ← T[i].v + OPT[p[i]]
+        skip ← OPT[i-1]
+        if take ≥ skip then
+            OPT[i] ← take
+            D[i] ← 1
+        else
+            OPT[i] ← skip
+            D[i] ← 0
+        end if
+    end for
+
+    # reconstruct
+    S ← empty list
+    i ← n
+    while i > 0 do
+        if D[i] = 1 then
+            append i to S
+            i ← p[i]
+        else
+            i ← i - 1
+        end if
+    end while
+    reverse S
+
+    return (OPT[n], S)
+end function
 
 Correctness. The recurrence follows from optimal substructure: including task i yields value v_i + OPT(p(i)); excluding i yields OPT(i-1). Taking the maximum preserves optimality.
 
