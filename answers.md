@@ -277,7 +277,16 @@ store all results for the imtermediate steps and subproblems, the number of coin
 
 - **5a.**
 
+Let N be the target and k the number of coin types.
 
+Work:
+Each state x ∈ {1..N} is computed once, and for that state we scan up to k coin types.
+Total work = Θ(kN).
+
+Span:
+The dependency DAG goes from x to x−d. The longest dependency chain has length equal to the minimum number of coins needed for N, which is ≤ N when a 1-coin exists.
+If the inner min over k coin choices is done sequentially, span = Θ(N).
+If the inner min over k is reduced in parallel, span = Θ(N log k).
 
 - **5b.**
 
